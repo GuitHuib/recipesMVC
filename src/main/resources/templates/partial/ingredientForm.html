@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www/thymeleaf.org" lang="en">
+<body>
+
+<form th:fragment="ingredientForm" th:action="@{/addingredients}" method="post">
+
+    <input type="hidden" th:value="${recipe.id}" name="recipe_id">
+
+    <label path="name">Name</label>
+    <input type="text" name="name" />
+
+    <label path="measurement">Measurement</label>
+    <input type="text" name="measurement" />
+
+    <label path="amount">Amount</label>
+    <input type="number" placeholder="1.0" step="0.01" name="amount" />
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
+
+

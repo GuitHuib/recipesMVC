@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www/thymeleaf.org" lang="en">
+<body>
+
+<form th:fragment="instructionsForm" th:action="@{/editinstructions}" method="post">
+
+    <input type="hidden" th:value="${recipe.id}" name="id">
+
+    <label path="instructions">Instructions</label>
+    <textarea name="instructions"></textarea>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
+
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www/thymeleaf.org" lang="en" th:replace="~{partial/layout :: layout(~{::title}, ~{::.content})}">
+<head>
+    <title>View Recipe</title>
+</head>
+<body>
+
+<div class="content">
+
+    <h3>Create Account</h3>
+
+    <form th:action="@{/sign-up}" method="post">
+        <label path="email">Email: </label>
+        <input type="email" name="email" />
+
+        <label path="password">Password: </label>
+        <input type="text" name="password" />
+
+<!--        <label path="passwordConfirmation">Confirm Password: </label>-->
+<!--        <input type="email" name="passwordConfirmation" />-->
+
+        <input type="submit" value="Create Account" />
+
+
+    </form>
+
+
+</div>
+
+</body>
+</html>

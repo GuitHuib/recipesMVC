@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www/thymeleaf.org" lang="en">
+<body>
+
+<form th:fragment="detailsForm" th:action="@{/editdetails}" th:object="${recipe}" method="post">
+
+    <input type="hidden" th:value="${recipe.id}" name="id">
+
+    <label path="name">Name</label>
+    <input type="text" name="name" th:value="${recipe.name}"/>
+
+    <label path="vegetarian">Vegetarian Friendly?</label>
+    <input type="radio" name="vegetarian" value="True" th:field="*{vegetarian}"/>
+    <input type="radio" name="vegetarian" value="False" th:field="*{vegetarian}"/>
+
+    <label path="vegan">Vegan Friendly?</label>
+    <input type="radio" name="vegan" value="True" th:field="*{vegan}"/>
+    <input type="radio" name="vegan" value="False" th:field="*{vegan}"/>
+
+    <label path="glutenFree">GutenFree?</label>
+    <input type="radio" name="glutenFree" value="True" th:field="*{glutenFree}"/>
+    <input type="radio" name="glutenFree" value="False" th:field="*{glutenFree}"/>
+
+    <label path="prepTime">Prep Time</label>
+    <input type="text" name="prepTime" th:value="${recipe.prepTime}"/>
+
+    <label path="cookTime">Cook Time</label>
+    <input type="text" name="cookTime" th:value="${recipe.cookTime}"/>
+
+    <label path="serves">Number Served</label>
+    <input type="number" name="serves" th:value="${recipe.serves}"/>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
+
+
