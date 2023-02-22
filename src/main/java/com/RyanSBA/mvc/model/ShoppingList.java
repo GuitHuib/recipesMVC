@@ -20,6 +20,8 @@ public class ShoppingList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+    String name = "test";
+
     @OneToMany(targetEntity = Ingredient.class)
     Set<Ingredient> ingredients;
 

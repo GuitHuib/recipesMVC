@@ -50,9 +50,9 @@ public class UserServiceImpl implements UserService{
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setPassword(encoder.encode(userDto.getPassword()));
-        ShoppingList list = new ShoppingList();
-        listRepo.save(list);
-        user.setShoppingList(list);
+//        ShoppingList list = new ShoppingList();
+//        listRepo.save(list);
+//        user.setShoppingList(list);
         repo.save(user);
 
     }

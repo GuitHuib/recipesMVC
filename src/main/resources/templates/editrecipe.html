@@ -8,11 +8,13 @@
     <div class="content">
         <h3>Edit Details</h3>
         <form th:replace="partial/detailsForm:: detailsForm"></form>
+
         <h3>Add Ingredients</h3>
-        <div th:each="ingredient : ${recipe.ingredients}">
-            <div th:text="${ingredient.name}"></div>
-            <div th:text="${ingredient.measurement}"></div>
+
+        <div th:each="ingredient : ${recipe.recipeIngredients}">
+            <div th:text="${ingredient.ingredient.name}"></div>
             <div th:text="${ingredient.amount}"></div>
+            <div th:text="${ingredient.type}"></div>
         </div>
 
         <form th:replace="partial/ingredientForm"></form>

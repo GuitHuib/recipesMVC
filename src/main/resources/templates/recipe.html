@@ -15,11 +15,13 @@
             <div th:text="${recipe.getPrepTime()}"></div>
             <div th:text="${recipe.getCookTime()}"></div>
             <div th:text="${recipe.getServes()}"></div>
-            <div th:each="ingredient : ${recipe.ingredients}">
-                <div th:text="${ingredient.name}"></div>
-                <div th:text="${ingredient.measurement}"></div>
+
+            <div th:each="ingredient : ${recipe.recipeIngredients}">
+                <div th:text="${ingredient.ingredient.name}"></div>
                 <div th:text="${ingredient.amount}"></div>
+                <div th:text="${ingredient.type}"></div>
             </div>
+
             <div th:text="${recipe.getInstructions()}"></div>
         </div>
 

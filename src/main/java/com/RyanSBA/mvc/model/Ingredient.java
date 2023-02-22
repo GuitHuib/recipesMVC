@@ -23,8 +23,8 @@ public class Ingredient {
 
     String name;
 
-    String measurement;
-
-    double amount;
+    public Ingredient(String name) {
+        this.name = name.trim().toLowerCase();
+    }
 
 }

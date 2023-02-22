@@ -33,7 +33,7 @@ public class IngredientServiceImpl implements IngredientService{
 
     @Override
     public <Optional> Ingredient findByName(String name) {
-        name.trim();
+        name.trim().toLowerCase();
         Ingredient ingredient = repo.findByName(name);
         return ingredient;
     };

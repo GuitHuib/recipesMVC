@@ -1,17 +1,15 @@
 package com.RyanSBA.mvc.model;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Recipe {
@@ -24,8 +22,8 @@ public class Recipe {
 
     String instructions;
 
-    @OneToMany(targetEntity = Ingredient.class)
-    Set<Ingredient> ingredients;
+    @OneToMany(targetEntity = RecipeIngredients.class, mappedBy = "recipe")
+    Set<RecipeIngredients> recipeIngredients;
 
     boolean vegetarian;
 
@@ -38,4 +36,12 @@ public class Recipe {
     String cookTime;
 
     int serves;
+
+    public void addIngredient(RecipeIngredients recipeIngredient) {
+        recipeIngredients.add(recipeIngredient);
+    }
+
+    public void removeIngredient(RecipeIngredients recipeIngredient) {
+        recipeIngredients.remove(recipeIngredient);
+    }
 }
