@@ -64,6 +64,7 @@ public class RecipeController {
     public RedirectView createRecipe(@ModelAttribute RecipeDto dto, RedirectAttributes model){
         Recipe recipe = new Recipe();
         recipe.setName(dto.getName());
+        recipe.setDescription(dto.getDescription());
         recipe.setVegetarian(dto.isVegetarian());
         recipe.setVegan(dto.isVegan());
         recipe.setGlutenFree(dto.isGlutenFree());

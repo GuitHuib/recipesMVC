@@ -24,6 +24,10 @@
 
             <div th:text="${recipe.getInstructions()}"></div>
         </div>
+        <form th:action="@{/addToList}" method="post">
+            <input type="hidden" th:value="${recipe.id}" name="id">
+            <input type="submit" value="Add Recipe To Shopping List">
+        </form>
 
         <a th:href="@{'/edit/' + ${recipe.id}}">Edit Recipe</a>
 

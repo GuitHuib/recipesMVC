@@ -14,7 +14,9 @@
         <div th:text="${recipe.name}"> Name</div>
     </div>
     <div><h3>Shopping List</h3></div>
-    <div th:text="${user.email}"></div>
+    <div th:each="ingredient : ${user.ingredients}">
+        <div th:text="${ingredient.name}">Name</div>
+    </div>
 
 
 

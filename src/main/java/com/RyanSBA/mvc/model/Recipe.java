@@ -3,7 +3,7 @@ package com.RyanSBA.mvc.model;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,6 +21,8 @@ public class Recipe {
     String name;
 
     String instructions;
+
+    String description;
 
     @OneToMany(targetEntity = RecipeIngredients.class, mappedBy = "recipe")
     Set<RecipeIngredients> recipeIngredients;
@@ -43,5 +45,13 @@ public class Recipe {
 
     public void removeIngredient(RecipeIngredients recipeIngredient) {
         recipeIngredients.remove(recipeIngredient);
+    }
+
+    public Set<Ingredient> getIngredients() {
+        Set<Ingredient> ingredients = new HashSet<>();
+        for (RecipeIngredients ingredient : recipeIngredients) {
+            ingredients.add(ingredient.ingredient);
+        }
+        return ingredients;
     }
 }

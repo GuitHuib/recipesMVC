@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-
 import java.util.Set;
 
 @Entity
@@ -19,15 +18,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
+    @Column(unique = true)
     String email;
-
     String password;
-
     @OneToMany(targetEntity = Recipe.class)
     Set<Recipe> recipes;
+    @OneToMany(targetEntity = Ingredient.class)
+    Set<Ingredient> ingredients;
 
-    @OneToOne(targetEntity = ShoppingList.class)
-    ShoppingList shoppingList;
+    public void addToShoppingList(Set<Ingredient> newIngredients) {
+        ingredients.addAll(newIngredients);
+    }
 
 }

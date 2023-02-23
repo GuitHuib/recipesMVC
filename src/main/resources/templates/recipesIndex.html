@@ -7,13 +7,31 @@
 
 <div class="content">
     <h3>All Recipes</h3>
-    <div th:each="recipe : ${recipes}">
-        <h3>Recipe</h3>
-        <a th:href="@{'/recipe/' + ${recipe.id}}">View Recipe</a>
-        <div th:text="${recipe.name}"> Name</div>
-        <div th:text="${recipe.vegetarian}"></div>
-        <div th:text="${recipe.cookTime}"></div>
-        <div th:text="${recipe.prepTime}"></div>
+    <div th:each="recipe : ${recipes}" class="rec-row">
+        <div class="row title-row">
+            <div class="col-6">
+                <a th:href="@{'/recipe/' + ${recipe.id}}" th:text="${recipe.name}" class="rec-title"></a>
+
+                <img th:if="${recipe.vegetarian}" th:src="@{/images/vegetarian.jpg}" class="thumb">
+                <span th:if="${recipe.vegetarian}">Veg</span>
+
+                <img th:if="${recipe.vegan}" th:src="@{/images/vegan.jpg}" class="thumb">
+                <span th:if="${recipe.vegan}">V</span>
+
+                <img th:if="${recipe.glutenFree}" th:src="@{/images/gluten_free.jpg}" class="thumb">
+                <span th:if="${recipe.glutenFree}">GF</span>
+            </div>
+        </div>
+        <div class="row desc">
+            <div th:text="${recipe.description}"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-3">Prep Time: <span th:text="${recipe.cookTime}"></span></div>
+            <div class="col-3">Cook Time: <span th:text="${recipe.prepTime}" ></span></div>
+        </div>
+
     </div>
 
 </div>

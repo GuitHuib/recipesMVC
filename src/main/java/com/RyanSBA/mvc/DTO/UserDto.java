@@ -1,6 +1,6 @@
 package com.RyanSBA.mvc.DTO;
 
-import com.RyanSBA.mvc.model.ShoppingList;
+//import com.RyanSBA.mvc.model.ShoppingList;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -7,7 +7,7 @@
 
     <div class="content">
         <h3>Edit Details</h3>
-        <form th:replace="partial/detailsForm:: detailsForm"></form>
+        <form th:replace="partial/forms/detailsForm:: detailsForm"></form>
 
         <h3>Add Ingredients</h3>
 
@@ -17,13 +17,13 @@
             <div th:text="${ingredient.type}"></div>
         </div>
 
-        <form th:replace="partial/ingredientForm"></form>
+        <form th:replace="partial/forms/ingredientForm"></form>
 
         <h3>Edit Instructions</h3>
 
         <div th:text="${recipe.instructions}"></div>
 
-        <form th:replace="partial/instructionsForm"></form>
+        <form th:replace="partial/forms/instructionsForm"></form>
 
     </div>
 

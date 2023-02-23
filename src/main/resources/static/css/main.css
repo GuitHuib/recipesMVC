@@ -1,0 +1,14 @@
+body {
+ /*   background-color: red; */
+}
+/* index styles */
+.rec-row {
+    margin: auto 3rem;
+    max-width:800px;
+}
+.rec-title {
+    font-weight: bold;
+}
+.thumb {
+    max-height: 20px;
+}

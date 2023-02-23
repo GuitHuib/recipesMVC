@@ -22,6 +22,8 @@ public class RecipeDto {
 
     String name;
 
+    String description;
+
     String instructions;
 
 //    @OneToMany(targetEntity = Ingredient.class)
