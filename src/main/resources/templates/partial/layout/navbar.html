@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www/thymeleaf.org" lang="en" th:replace="~{partial/layout :: layout(~{::title}, ~{::.content})}">
+<html xmlns:th="http://www/thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en"
+      th:replace="~{partial/layout :: layout(~{::title}, ~{::.content})}">
 
 <body>
 
@@ -13,15 +14,16 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+            <li class="nav-item" sec:authorize="isAnonymous()">
+                <a class="nav-link" href="/login">Login</a>
             </li>
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" sec:authorize="isAuthenticated()" >
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/createrecipe">New Recipe</a>
-                    <a class="dropdown-item" href="/profile">Profile</a>
+                    <a class="dropdown-item" href="/createrecipe">Create Recipe</a>
+                    <a class="dropdown-item" href="/myrecipes">My Recipes</a>
+                    <a class="dropdown-item" href="/shoppinglist">My Shopping List</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">Logout</a>
                 </div>

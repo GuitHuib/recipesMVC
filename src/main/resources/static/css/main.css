@@ -1,14 +1,70 @@
-body {
- /*   background-color: red; */
+/* global styles */
+li {
+    list-style: none;
 }
+.content {
+    margin: auto;
+    max-width: 800px;
+}
+
 /* index styles */
-.rec-row {
-    margin: auto 3rem;
+.rec-card {
+    box-shadow: 4px 4px 8px grey;
+    color: black;
+    margin: 1rem 3rem;
+    padding: 1em;
     max-width:800px;
+    text-decoration: none;
 }
 .rec-title {
+    font-size: 1.5rem;
     font-weight: bold;
+    text-decoration: underline;
+    text-transform: capitalize;
 }
 .thumb {
     max-height: 20px;
+    width: auto;
+}
+.rec-img img {
+    max-height:167px;
+    width: auto;
+}
+.rec-img-lg img{
+    max-height: 300px;
+    max-width: 500px;
+    width: auto;
+}
+.brn-col {
+    color: brown;
+}
+.grn-col {
+    color: green;
+}
+.desc {
+    margin: 5px;
+    height: 75px;
+    width: 300px;
+}
+.recipe {
+    max-width: 500px;
+}
+.iso-btn {
+    margin: 1rem auto;
+}
+/* form styles */
+form {
+    max-width: 550px;
+}
+input[type=text],
+input[type=email],
+input[type=number]{
+    width: 100%;
+}
+textarea {
+    height: 5rem;
+    width: 100%;
+}
+.form-list {
+    padding: 0;
 }

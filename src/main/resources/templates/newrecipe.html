@@ -15,25 +15,60 @@
         <input type="text" name="name" />
 
         <label path="description">Description</label>
-        <input type="text" name="description"/>
+        <textarea name="description"></textarea>
 
-        <label path="vegetarian">Vegetarian Friendly?</label>
-        <input type="radio" name="vegetarian" value="True"/>
-        <input type="radio" name="vegetarian" value="False" checked="true"/>
+        <div class="row">
+            <div class="col-lg-4">
+                <ul class="form-list">
+                    <lil>
+                        <input type="radio" name="vegetarian" id="vegetarian" value="True"/>
+                        <label for="vegetarian">Vegetarian Friendly</label>
+                    </lil>
+                    <li>
+                        <input type="radio" name="vegetarian" id="nonVegetarian" value="False" checked="true"/>
+                        <label for="nonVegetarian">Non Vegetarian</label>
+                    </li>
+                </ul>
+            </div>
 
-        <label path="vegan">Vegan Friendly?</label>
-        <input type="radio" name="vegan" value="True"/>
-        <input type="radio" name="vegan" value="False" checked="true"/>
+            <div class="col-lg-4 form-list">
+                <ul>
+                    <li>
+                        <input type="radio" name="vegan" id="vegan" value="True"/>
+                        <label for="vegan">Vegan Friendly</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="vegan" id="nonVegan" value="False" checked="true"/>
+                        <label for="nonVegan">Non Vegan</label>
+                    </li>
+                </ul>
+            </div>
 
-        <label path="glutenFree">GutenFree?</label>
-        <input type="radio" name="glutenFree" value="True"/>
-        <input type="radio" name="glutenFree" value="False" checked="true"/>
+            <div class="col-lg-4 form-list">
+                <ul>
+                    <li>
+                        <input type="radio" name="glutenFree" id="glutenFree" value="True"/>
+                        <label for="glutenFree">GutenFree</label>
+                    </li>
 
-        <label path="prepTime">Prep Time</label>
-        <input type="text" name="prepTime" />
+                    <li>
+                        <input type="radio" name="glutenFree" id="nonGlutenFree" value="False" checked="true"/>
+                        <label for="nonGlutenFree">Non GutenFree</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-        <label path="cookTime">Cook Time</label>
-        <input type="text" name="cookTime" />
+        <div class="row">
+            <div class="col-lg-6">
+                <label path="prepTime">Prep Time</label>
+                <input type="text" name="prepTime" />
+            </div>
+            <div class="col-lg-6">
+                <label path="cookTime">Cook Time</label>
+                <input type="text" name="cookTime" />
+            </div>
+        </div>
 
         <label path="serves">Number Served</label>
         <input type="number" name="serves" />

@@ -55,11 +55,18 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/myrecipes")
     public String showUser(Model model, Principal principle) {
         User user = service.findByEmail(principle.getName());
         model.addAttribute("user", user);
-        return "user";
+        return "myrecipes";
+    }
+
+    @GetMapping("/shoppinglist")
+    public String showList(Model model, Principal principle) {
+        User user = service.findByEmail(principle.getName());
+        model.addAttribute("user", user);
+        return "shoppinglist";
     }
 
     @PostMapping("/addToList")

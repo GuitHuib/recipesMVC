@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www/thymeleaf.org" lang="en" th:replace="~{partial/layout :: layout(~{::title}, ~{::.content})}">
 <head>
-    <title>Recipes</title>
+    <title>View Recipe</title>
 </head>
 <body>
 
 <div class="content">
-    <h3 class="m-5">Recent Recipes</h3>
-    <a th:each="recipe : ${recipes}" th:href="@{'/recipe/' + ${recipe.id}}" class="rec-card row">
+    <div><h3>Users Recipes</h3></div>
+    <a th:each="recipe : ${user.recipes}" th:href="@{'/recipe/' + ${recipe.id}}" class="rec-card row">
         <div th:replace="partial/recipecard :: recipecard"></div>
     </a>
+
 </div>
 
 </body>

@@ -4,28 +4,23 @@
     <title>Create Recipe</title>
 </head>
 <body>
-
     <div class="content">
         <h3>Edit Details</h3>
-        <form th:replace="partial/forms/detailsForm:: detailsForm"></form>
+        <form th:replace="partial/forms/detailsForm::detailsForm"></form>
 
-        <h3>Add Ingredients</h3>
-
-        <div th:each="ingredient : ${recipe.recipeIngredients}">
-            <div th:text="${ingredient.ingredient.name}"></div>
-            <div th:text="${ingredient.amount}"></div>
-            <div th:text="${ingredient.type}"></div>
-        </div>
+        <h3>Ingredients</h3>
+        <ul>
+            <li th:each="ingredient : ${recipe.recipeIngredients}"
+                th:text="${ingredient.ingredient.name} + ' ' + ${ingredient.amount} + ' ' + ${ingredient.type}">
+            </li>
+        </ul>
 
         <form th:replace="partial/forms/ingredientForm"></form>
 
         <h3>Edit Instructions</h3>
 
-        <div th:text="${recipe.instructions}"></div>
-
         <form th:replace="partial/forms/instructionsForm"></form>
 
     </div>
-
 </body>
 </html>

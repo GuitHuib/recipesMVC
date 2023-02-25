@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www/thymeleaf.org" lang="en">
+<body>
+<div th:fragment="recipecard" class="row">
+
+    <div class="col-7">
+        <div th:text="${recipe.name}" class="rec-title"></div>
+        <div class="col-12 title-row">
+
+            <img th:if="${recipe.vegetarian}" th:src="@{/images/vegetarian.jpg}" class="thumb">
+            <span th:if="${recipe.vegetarian}" class="grn-col">Veg</span>
+
+            <img th:if="${recipe.vegan}" th:src="@{/images/vegan.jpg}" class="thumb">
+            <span th:if="${recipe.vegan}" class="grn-col">V</span>
+
+            <img th:if="${recipe.glutenFree}" th:src="@{/images/gluten_free.jpg}" class="thumb">
+            <span th:if="${recipe.glutenFree}" class="brn-col">GF</span>
+
+        </div>
+        <div class="row desc" th:text="${recipe.description}">
+            <div ></div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">Prep Time: <span th:text="${recipe.cookTime}"></span></div>
+            <div class="col-6">Cook Time: <span th:text="${recipe.prepTime}" ></span></div>
+        </div>
+    </div>
+    <div class="col-5 rec-img">
+        <img src="/images/meal.jpg">
+    </div>
+</div>
+
+</body>
+</html>

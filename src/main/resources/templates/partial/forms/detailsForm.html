@@ -10,30 +10,65 @@
     <input type="text" name="name" th:value="${recipe.name}"/>
 
     <label path="description">Description</label>
-    <input type="text" name="description" th:value="${recipe.description}"/>
+    <textarea name="description" th:text="${recipe.description}"></textarea>
 
-    <label path="vegetarian">Vegetarian Friendly?</label>
-    <input type="radio" name="vegetarian" value="True" th:field="*{vegetarian}"/>
-    <input type="radio" name="vegetarian" value="False" th:field="*{vegetarian}"/>
+    <div class="row">
+        <div class="col-lg-4">
+            <ul class="form-list">
+                <lil>
+                    <input type="radio" name="vegetarian" id="vegetarian" value="True" th:field="*{vegetarian}"/>
+                    <label for="vegetarian">Vegetarian Friendly</label>
+                </lil>
+                <li>
+                    <input type="radio" name="vegetarian" id="nonVegetarian" value="False" th:field="*{vegetarian}"/>
+                    <label for="nonVegetarian">Non Vegetarian</label>
+                </li>
+            </ul>
+        </div>
 
-    <label path="vegan">Vegan Friendly?</label>
-    <input type="radio" name="vegan" value="True" th:field="*{vegan}"/>
-    <input type="radio" name="vegan" value="False" th:field="*{vegan}"/>
+        <div class="col-lg-4 form-list">
+            <ul>
+                <li>
+                    <input type="radio" name="vegan" id="vegan" value="True" th:field="*{vegan}"/>
+                    <label for="vegan">Vegan Friendly</label>
+                </li>
+                <li>
+                    <input type="radio" name="vegan" id="nonVegan" value="False" th:field="*{vegan}"/>
+                    <label for="nonVegan">Non Vegan</label>
+                </li>
+            </ul>
+        </div>
 
-    <label path="glutenFree">GutenFree?</label>
-    <input type="radio" name="glutenFree" value="True" th:field="*{glutenFree}"/>
-    <input type="radio" name="glutenFree" value="False" th:field="*{glutenFree}"/>
+        <div class="col-lg-4 form-list">
+            <ul>
+                <li>
+                    <input type="radio" name="glutenFree" id="glutenFree" value="True" th:field="*{glutenFree}"/>
+                    <label for="glutenFree">GutenFree</label>
+                </li>
 
-    <label path="prepTime">Prep Time</label>
-    <input type="text" name="prepTime" th:value="${recipe.prepTime}"/>
+                <li>
+                    <input type="radio" name="glutenFree" id="nonGlutenFree" value="False" th:field="*{glutenFree}" />
+                    <label for="nonGlutenFree">Non GutenFree</label>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-    <label path="cookTime">Cook Time</label>
-    <input type="text" name="cookTime" th:value="${recipe.cookTime}"/>
+    <div class="row">
+        <div class="col-lg-6">
+            <label path="prepTime">Prep Time</label>
+            <input type="text" name="prepTime" th:value="${recipe.prepTime}" />
+        </div>
+        <div class="col-lg-6">
+            <label path="cookTime">Cook Time</label>
+            <input type="text" name="cookTime" th:value="${recipe.prepTime}" />
+        </div>
+    </div>
 
     <label path="serves">Number Served</label>
     <input type="number" name="serves" th:value="${recipe.serves}"/>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Update">
 </form>
 
 </body>

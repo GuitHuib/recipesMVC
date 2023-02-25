@@ -7,29 +7,68 @@
 
     <div class="content">
 
-        <div th:object="${recipe}">
-            <h3 th:text="${recipe.getName()}"></h3>
-            <div th:text="${recipe.isVegetarian()}"></div>
-            <div th:text="${recipe.isVegan()}"></div>
-            <div th:text="${recipe.isGlutenFree()}"></div>
-            <div th:text="${recipe.getPrepTime()}"></div>
-            <div th:text="${recipe.getCookTime()}"></div>
-            <div th:text="${recipe.getServes()}"></div>
+        <div th:object="${recipe}" class="recipe my-3 row">
 
-            <div th:each="ingredient : ${recipe.recipeIngredients}">
-                <div th:text="${ingredient.ingredient.name}"></div>
-                <div th:text="${ingredient.amount}"></div>
-                <div th:text="${ingredient.type}"></div>
+            <!--recipe info-->
+            <div class="row">
+                <div class="row title-row">
+                    <div>
+                        <div th:text="${recipe.name}" class="rec-title"></div>
+
+                        <img th:if="${recipe.vegetarian}" th:src="@{/images/vegetarian.jpg}" class="thumb">
+                        <span th:if="${recipe.vegetarian}">Veg</span>
+
+                        <img th:if="${recipe.vegan}" th:src="@{/images/vegan.jpg}" class="thumb">
+                        <span th:if="${recipe.vegan}">V</span>
+
+                        <img th:if="${recipe.glutenFree}" th:src="@{/images/gluten_free.jpg}" class="thumb">
+                        <span th:if="${recipe.glutenFree}">GF</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="">
+                        Prep Time:
+                        <span th:text="${recipe.cookTime}"></span>
+                        | Cook Time:
+                        <span th:text="${recipe.prepTime}"></span>
+                    </div>
+                </div>
             </div>
 
+            <!-- recipe description -->
+            <div class="row my-3">
+                <div th:text="${recipe.description}"></div>
+            </div>
+            <form th:action="@{/addToList}" method="post">
+                <input type="hidden" th:value="${recipe.id}" name="id">
+                <input type="submit" value="Add Ingredients To Shopping List" class="iso-btn">
+            </form>
+
+            <div class="row">
+                <div class="rec-img-lg">
+                    <img src="/images/meal.jpg">
+                </div>
+            </div>
+
+
+            <div class="rec-title">Ingredients</div>
+            <div class="row">
+                <ul>
+                    <li
+                            th:each="ingredient : ${recipe.recipeIngredients}"
+                            th:text="${ingredient.ingredient.name} + ' ' + ${ingredient.amount} + ' ' +${ingredient.type}"
+                            class="col">
+                    </li>
+                </ul>
+            </div>
+
+            <div class="rec-title">Directions</div>
             <div th:text="${recipe.getInstructions()}"></div>
         </div>
-        <form th:action="@{/addToList}" method="post">
-            <input type="hidden" th:value="${recipe.id}" name="id">
-            <input type="submit" value="Add Recipe To Shopping List">
-        </form>
 
-        <a th:href="@{'/edit/' + ${recipe.id}}">Edit Recipe</a>
+            <a th:href="@{'/edit/' + ${recipe.id}}"><button>Edit Recipe</button></a>
+
 
     </div>
 

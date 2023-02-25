@@ -7,7 +7,7 @@
     <input type="hidden" th:value="${recipe.id}" name="id">
 
     <label path="instructions">Instructions</label>
-    <textarea name="instructions"></textarea>
+    <textarea name="instructions" th:text="${recipe.description}"></textarea>
 
     <input type="submit" value="Submit">
 </form>

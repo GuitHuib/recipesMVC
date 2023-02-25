@@ -37,7 +37,7 @@ public class RecipeController {
 
     // view individual recipe
     @GetMapping("/recipe/{id}")
-    public String showRecipe(@PathVariable int id, Model model) {
+    public String showRecipe(@PathVariable int id, Model model, Principal principal) {
         Recipe recipe = recipeService.findById(id);
         model.addAttribute("recipe", recipe);
         return "recipe";
@@ -87,6 +87,7 @@ public class RecipeController {
     public RedirectView editDetails(@ModelAttribute RecipeDto dto, RedirectAttributes att) {
         Recipe recipe = recipeService.findById(dto.getId());
         recipe.setName(dto.getName());
+        recipe.setDescription(dto.getDescription());
         recipe.setVegetarian(dto.isVegetarian());
         recipe.setVegan(dto.isVegan());
         recipe.setGlutenFree(dto.isGlutenFree());

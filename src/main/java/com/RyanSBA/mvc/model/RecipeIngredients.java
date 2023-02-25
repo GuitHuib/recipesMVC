@@ -40,7 +40,7 @@ public class RecipeIngredients {
         this.ingredient = ingredient;
         this.id = new RecipeIngredientKey(recipe.getId(), ingredient.getId());
         this.amount = amount;
-        this.type = getType();
+        this.type = type;
     }
 
 }
