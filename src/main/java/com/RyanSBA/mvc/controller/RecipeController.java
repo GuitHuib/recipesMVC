@@ -37,18 +37,26 @@ public class RecipeController {
 
     // view individual recipe
     @GetMapping("/recipe/{id}")
-    public String showRecipe(@PathVariable int id, Model model, Principal principal) {
+    public String showRecipe(@PathVariable int id, Model model) {
         Recipe recipe = recipeService.findById(id);
+        User user = recipe.getUser();
         model.addAttribute("recipe", recipe);
+        model.addAttribute("user", user);
         return "recipe";
     }
 
     // navigate to edit  page
     @GetMapping("/edit/{id}")
-    public String editRecipe(@PathVariable int id, Model model) {
+    public String editRecipe(@PathVariable int id, Model model, Principal principal) {
         Recipe recipe = recipeService.findById(id);
+        User user = userService.findByEmail(principal.getName());
         model.addAttribute("recipe", recipe);
-        return "/editrecipe";
+        if (user.getEmail() == recipe.getUser().getEmail()){
+            return "/editrecipe";
+        }
+        else {
+            return "recipe";
+        }
     }
 
     // create new recipe form
@@ -63,22 +71,25 @@ public class RecipeController {
     @PostMapping("/createrecipe")
     public RedirectView createRecipe(@ModelAttribute RecipeDto dto, RedirectAttributes model){
         Recipe recipe = new Recipe();
+        User user = userService.findByEmail(dto.getEmail());
+
+        // convert dto to ingredient model
         recipe.setName(dto.getName());
         recipe.setDescription(dto.getDescription());
+        recipe.setUser(user);
         recipe.setVegetarian(dto.isVegetarian());
         recipe.setVegan(dto.isVegan());
         recipe.setGlutenFree(dto.isGlutenFree());
         recipe.setPrepTime(dto.getPrepTime());
         recipe.setCookTime(dto.getCookTime());
         recipe.setServes(dto.getServes());
-
-        model.addFlashAttribute("recipe", recipe);
         recipeService.saveRecipe(recipe);
 
-        User user = userService.findByEmail(dto.getEmail());
-        Set<Recipe> recipes = user.getRecipes();
-        recipes.add(recipe);
+        user.addRecipe(recipe);
         userService.updateUser(user);
+
+        model.addFlashAttribute("recipe", recipe);
+
         return new RedirectView("/edit/" + recipe.getId());
     }
 

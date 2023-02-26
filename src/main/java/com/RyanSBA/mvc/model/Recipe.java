@@ -27,6 +27,10 @@ public class Recipe {
     @OneToMany(targetEntity = RecipeIngredients.class, mappedBy = "recipe")
     Set<RecipeIngredients> recipeIngredients;
 
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "recipe_id")
+    User user;
+
     boolean vegetarian;
 
     boolean vegan;

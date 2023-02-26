@@ -30,4 +30,7 @@ public class User {
         ingredients.addAll(newIngredients);
     }
 
+    public void addRecipe(Recipe recipe) {
+        recipes.add(recipe);
+    }
 }
