@@ -2,9 +2,25 @@
 <html xmlns:th="http://www/thymeleaf.org" lang="en" th:replace="~{partial/layout :: layout(~{::title}, ~{::.content})}">
 <body>
 
-    <div th:fragment="footer">
-        <h1>FOOTER HERE</h1>
-    </div>
+    <footer th:fragment="footer" class="footer row">
+        <div class="col-lg-4 col-12 footer-col">
+            <ul>
+                <li><a href="mailto:rwallaceguitar@gmail.com">rwallaceguitar@gmail.com</a></li>
+            </ul>
+        </div>
+
+        <div class="col-lg-4 col-12 footer-col">
+            <ul>
+                <li>&copy 2023</li>
+            </ul>
+        </div>
+
+        <div class="col-lg-4 col-12 footer-col">
+            <ul>
+                <li><a href="https://github.com/GuitHuib">GitHub</a></li>
+            </ul>
+        </div>
+    </footer>
 
 </body>
 </html>

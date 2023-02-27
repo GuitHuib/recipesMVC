@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -17,7 +18,7 @@ public class IngredientServiceImpl implements IngredientService{
     IngredientRepository repo;
 
     @Override
-    public List<Ingredient> findAllngredients() {
+    public List<Ingredient> findAllIngredients() {
         return null;
     }
 
@@ -27,19 +28,17 @@ public class IngredientServiceImpl implements IngredientService{
     }
 
     @Override
-    public Recipe findById(int id) {
-        return null;
+    public Optional<Ingredient> findById(int id) {
+        return repo.findById(id);
     }
 
     @Override
-    public <Optional> Ingredient findByName(String name) {
-        name.trim().toLowerCase();
-        Ingredient ingredient = repo.findByName(name);
-        return ingredient;
+    public Optional<Ingredient> findByName(String name) {
+        return repo.findByName(name.trim().toLowerCase());
     };
 
     @Override
-    public Set<Recipe> findByRecipe(User user) {
+    public Set<Recipe> findByRecipe(Recipe recipe) {
         return null;
     }
 

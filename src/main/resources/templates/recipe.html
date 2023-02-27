@@ -41,7 +41,7 @@
             <div class="row my-3">
                 <div th:text="${recipe.description}"></div>
             </div>
-            <form th:action="@{/addToList}" method="post">
+            <form sec:authorize="isAuthenticated()" th:action="@{/addToList}" method="post">
                 <input type="hidden" th:value="${recipe.id}" name="id">
                 <input type="submit" value="Add Ingredients To Shopping List" class="iso-btn">
             </form>
@@ -65,7 +65,12 @@
             </div>
 
             <div class="rec-title">Directions</div>
-            <div th:text="${recipe.getInstructions()}"></div>
+            <div th:each="instruction, iStat : ${recipe.instructions}">
+                <div>
+                    <span th:text="'Step ' + ${iStat.index+1} + ')'" class="bold"></span>
+                    <span th:text="${instruction.text}"></span>
+                </div>
+            </div>
         </div>
 
         <div sec:authorize="isAuthenticated()">

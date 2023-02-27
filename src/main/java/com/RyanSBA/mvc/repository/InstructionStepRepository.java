@@ -1,9 +1,9 @@
 package com.RyanSBA.mvc.repository;
 
-import com.RyanSBA.mvc.model.Recipe;
+import com.RyanSBA.mvc.model.InstructionStep;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
+public interface InstructionStepRepository extends JpaRepository<InstructionStep, Integer> {
 }

@@ -30,7 +30,9 @@ public class User {
         ingredients.addAll(newIngredients);
     }
 
-    public void addRecipe(Recipe recipe) {
-        recipes.add(recipe);
+    public void removeItem(Ingredient ingredient){
+        ingredients.remove(ingredient);
     }
+
+    public void addRecipe(Recipe recipe) { recipes.add(recipe); }
 }

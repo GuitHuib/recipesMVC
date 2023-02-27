@@ -6,11 +6,10 @@
 <body>
 
 <div class="content">
-    <div><h3>Users Recipes</h3></div>
+    <h3 class="page-header">My Recipes</h3>
     <a th:each="recipe : ${user.recipes}" th:href="@{'/recipe/' + ${recipe.id}}" class="rec-card row">
         <div th:replace="partial/recipecard :: recipecard"></div>
     </a>
-
 </div>
 
 </body>

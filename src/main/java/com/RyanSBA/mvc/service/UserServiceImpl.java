@@ -1,9 +1,7 @@
 package com.RyanSBA.mvc.service;
 
 import com.RyanSBA.mvc.DTO.UserDto;
-//import com.RyanSBA.mvc.model.ShoppingList;
 import com.RyanSBA.mvc.model.User;
-//import com.RyanSBA.mvc.repository.ShoppingListRepository;
 import com.RyanSBA.mvc.repository.UserRepository;
 import com.RyanSBA.mvc.security.UserPrinciple;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +17,12 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService{
     private UserRepository repo;
-//    private ShoppingListRepository listRepo;
 
     PasswordEncoder encoder;
 
     @Autowired
     public UserServiceImpl(UserRepository repo, @Lazy PasswordEncoder encoder) {
         this.repo = repo;
-//        this.listRepo = listRepo;
         this.encoder = encoder;
     }
 
@@ -39,7 +35,6 @@ public class UserServiceImpl implements UserService{
         return new UserPrinciple(user);
     }
 
-
     @Override
     public List<User> findAllUsers() {
         return null;
@@ -50,9 +45,6 @@ public class UserServiceImpl implements UserService{
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setPassword(encoder.encode(userDto.getPassword()));
-//        ShoppingList list = new ShoppingList();
-//        listRepo.save(list);
-//        user.setShoppingList(list);
         repo.save(user);
 
     }

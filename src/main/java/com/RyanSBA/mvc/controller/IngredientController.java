@@ -13,29 +13,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 public class IngredientController {
 
     @Autowired
-    IngredientServiceImpl iRepo;
+    IngredientServiceImpl ingredientService;
     @Autowired
-    RecipeServiceImpl rRepo;
+    RecipeServiceImpl recipeService;
 
     @PostMapping("addingredients")
     public RedirectView addIngredients(@ModelAttribute IngredientDto dto, RedirectAttributes model) {
+
         // check if ingredient already exists, else save new
-        Optional<Ingredient> _ingredient = Optional.ofNullable(iRepo.findByName(dto.getName()));
-        Ingredient ingredient = _ingredient.isPresent() ? _ingredient.get() :  new Ingredient(dto.getName());
-        if (!_ingredient.isPresent()) iRepo.saveIngredient(ingredient);
+        Optional<Ingredient> _ingredient = ingredientService.findByName(dto.getName());
+        Ingredient ingredient = _ingredient.orElse(new Ingredient(dto.getName().trim()));
+        if (_ingredient.isEmpty()) ingredientService.saveIngredient(ingredient);
 
         //find recipe, add ingredient
-        Recipe recipe = rRepo.findById(dto.getRecipe_id());
+        Recipe recipe = recipeService.findById(dto.getRecipe_id());
         RecipeIngredients recipeIngredients = new RecipeIngredients(recipe, ingredient, dto.getAmount(), dto.getMeasurement());
-        rRepo.addIngredient(recipe, recipeIngredients);
+        recipeService.addIngredient(recipe, recipeIngredients);
 
         //forward recipe info
         model.addFlashAttribute("recipe", recipe);

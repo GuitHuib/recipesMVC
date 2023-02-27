@@ -6,13 +6,13 @@
 <body>
 
 <div class="content">
-    <h3 class="test">New Recipe Form</h3>
-    <form th:action="@{/createrecipe}" th:object="${recipedto}" method="post">
+    <h3 class="page-header">New Recipe Form</h3>
+    <form th:action="@{/createrecipe}" th:object="${recipedto}" method="post" class="centered">
 
         <input type="hidden" th:value="${email}" name="email">
 
         <label path="name">Name</label>
-        <input type="text" name="name" />
+        <input type="text" name="name" required/>
 
         <label path="description">Description</label>
         <textarea name="description"></textarea>
@@ -71,7 +71,7 @@
         </div>
 
         <label path="serves">Number Served</label>
-        <input type="number" name="serves" />
+        <input type="text" name="serves" />
 
         <input type="submit" value="Submit">
     </form>

@@ -1,17 +1,32 @@
 /* global styles */
+ol, ul {
+    padding: 0;
+}
 li {
     list-style: none;
 }
+.bold {
+    font-weight: bold;
+}
 .content {
+    box-sizing: border-box;
     margin: auto;
+    min-height: 100vh;
     max-width: 800px;
 }
-
+.page-header {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+.centered {
+    margin: auto;
+}
 /* index styles */
 .rec-card {
     box-shadow: 4px 4px 8px grey;
     color: black;
-    margin: 1rem 3rem;
+    margin: 1rem auto;
     padding: 1em;
     max-width:800px;
     text-decoration: none;
@@ -47,6 +62,7 @@ li {
     width: 300px;
 }
 .recipe {
+    margin: auto;
     max-width: 500px;
 }
 .iso-btn {
@@ -67,4 +83,48 @@ textarea {
 }
 .form-list {
     padding: 0;
+}
+/* list style*/
+.checked {
+    text-decoration: line-through;
+}
+.list-item {
+    display: flex;
+    margin: auto;
+    max-width: 200px;
+
+}
+.btn-trans {
+    background-color: transparent;
+    border: none;
+    font-size: 0.8rem;
+    margin-left: 2rem;
+    text-decoration: underline;
+}
+
+/* footer styles */
+.footer {
+    background: black;
+    color: #ccc;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+.footer-col {
+    margin: 0;
+    padding: 10px;
+}
+.footer-col a {
+    color: #ccc;
+}
+
+
+/* media queries */
+@media (max-width: 576px) {
+    .rec-img {
+        margin: 3rem auto;
+    }
+    .rec-img-lg img{
+        max-width: 350px;
+    }
 }

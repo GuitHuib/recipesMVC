@@ -1,8 +1,11 @@
 package com.RyanSBA.mvc.controller;
 
+import com.RyanSBA.mvc.DTO.InstructionDto;
 import com.RyanSBA.mvc.DTO.RecipeDto;
+import com.RyanSBA.mvc.model.InstructionStep;
 import com.RyanSBA.mvc.model.Recipe;
 import com.RyanSBA.mvc.model.User;
+import com.RyanSBA.mvc.service.InstructionStepServiceImpl;
 import com.RyanSBA.mvc.service.RecipeServiceImpl;
 import com.RyanSBA.mvc.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Controller
 public class RecipeController {
@@ -26,6 +29,9 @@ public class RecipeController {
     RecipeServiceImpl recipeService;
     @Autowired
     UserServiceImpl userService;
+
+    @Autowired
+    InstructionStepServiceImpl instService;
 
     // view index of all recipes
     @GetMapping("/")
@@ -51,12 +57,7 @@ public class RecipeController {
         Recipe recipe = recipeService.findById(id);
         User user = userService.findByEmail(principal.getName());
         model.addAttribute("recipe", recipe);
-        if (user.getEmail() == recipe.getUser().getEmail()){
-            return "/editrecipe";
-        }
-        else {
-            return "recipe";
-        }
+        return user.getEmail().equals(recipe.getUser().getEmail()) ? "/editrecipe" : "recipe";
     }
 
     // create new recipe form
@@ -114,11 +115,18 @@ public class RecipeController {
 
     // edit recipe instructions
     @PostMapping("/editinstructions")
-    public RedirectView editDirections(@ModelAttribute RecipeDto data, RedirectAttributes att) {
-        Recipe recipe = recipeService.findById(data.getId());
-        recipe.setInstructions(data.getInstructions());
-        recipeService.saveRecipe(recipe);
+    public RedirectView editDirections(@ModelAttribute InstructionDto data, RedirectAttributes att) {
+        Recipe recipe = recipeService.findById(data.getRecipe_id());
+        InstructionStep step;
+        Optional<InstructionStep> _step = instService.findById(data.getId());
+        step = _step.orElseGet(InstructionStep::new);
+        step.setText(data.getText());
+        instService.saveInstructionStep(step);
 
+        if (_step.isEmpty()) {
+            recipe.addInstruction(step);
+            recipeService.saveRecipe(recipe);
+        }
         att.addFlashAttribute("recipe", recipe);
 
         return new RedirectView("/edit/" + recipe.getId());

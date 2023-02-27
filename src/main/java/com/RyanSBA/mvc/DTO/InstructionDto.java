@@ -1,6 +1,5 @@
 package com.RyanSBA.mvc.DTO;
 
-//import com.RyanSBA.mvc.model.ShoppingList;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,11 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+public class InstructionDto {
 
-public class UserDto {
-    String email;
-    String password;
+    int id;
+    int recipe_id;
+    String text;
+
 }

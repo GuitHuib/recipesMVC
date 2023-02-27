@@ -1,11 +1,7 @@
 package com.RyanSBA.mvc.DTO;
 
 import com.RyanSBA.mvc.model.Ingredient;
-import jakarta.persistence.OneToMany;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
@@ -17,27 +13,21 @@ import java.util.Set;
 public class RecipeDto {
 
     int id;
-
     String email;
-
+    @NonNull
     String name;
-
     String description;
-
     String instructions;
-
-//    @OneToMany(targetEntity = Ingredient.class)
     Set<Ingredient> ingredients;
-
     boolean vegetarian;
-
     boolean vegan;
-
     boolean glutenFree;
-
     String prepTime;
-
     String cookTime;
+    String serves;
 
-    int serves;
+    public RecipeDto(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 }

@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www/thymeleaf.org" lang="en" th:replace="~{partial/layout :: layout(~{::title}, ~{::.content})}">
 <head>
-    <title>Shoping List</title>
+    <title>Shopping List</title>
 </head>
 <body>
 
 <div class="content">
-    <div class="rec-title">Shopping List</div>
-    <ul >
-        <li th:each="ingredient : ${user.ingredients}" th:text="${ingredient.name}"></li>
+    <h3 class="page-header">Shopping List</h3>
+    <ul>
+        <li th:each="ingredient : ${user.ingredients}" >
+            <div class="list-item">
+                <p class="item" th:text="${ingredient.name}"></p>
+                <form th:action="@{/deleteItem}" method="post">
+                    <input type="hidden" th:value="${ingredient.id}" name="id">
+                    <input type="submit" value="Remove" class="btn-trans">
+                </form>
+            </div>
+        </li>
     </ul>
+
+    <form th:action="@{/addItem}" method="post" class="centered">
+        <h3 class="page-header">Add item to list</h3>
+        <div class="list-item">
+            <input name="name" type="text">
+            <input type="submit" value="Add" class="btn-trans">
+        </div>
+    </form>
+
 
 </div>
 </body>

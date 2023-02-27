@@ -6,8 +6,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import lombok.*;
 
-import java.util.Set;
-
 @Setter
 @Getter
 @Entity

@@ -4,10 +4,10 @@
 
 <form th:fragment="instructionsForm" th:action="@{/editinstructions}" method="post">
 
-    <input type="hidden" th:value="${recipe.id}" name="id">
+    <input type="hidden" th:value="${recipe.id}" name="recipe_id">
 
-    <label path="instructions">Instructions</label>
-    <textarea name="instructions" th:text="${recipe.instructions}"></textarea>
+    <label path="text">Instructions</label>
+    <textarea name="text" th:text="${instruction}"></textarea>
 
     <input type="submit" value="Submit">
 </form>
