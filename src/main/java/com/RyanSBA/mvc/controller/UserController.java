@@ -45,7 +45,10 @@ public class UserController {
 
     @PostMapping("/sign-up")
     public RedirectView newUser(@ModelAttribute UserDto dto, HttpServletRequest req) {
-        userService.createUser(dto);
+        User user = new User();
+        user.setPassword(dto.getPassword());
+        user.setEmail(dto.getEmail());
+        userService.createUser(user);
         //automatically login after sign up
         try {
             req.login(dto.getEmail(), dto.getPassword());

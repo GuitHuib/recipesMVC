@@ -19,7 +19,7 @@ public class IngredientServiceImpl implements IngredientService{
 
     @Override
     public List<Ingredient> findAllIngredients() {
-        return null;
+        return repo.findAll();
     }
 
     @Override
@@ -28,9 +28,7 @@ public class IngredientServiceImpl implements IngredientService{
     }
 
     @Override
-    public Optional<Ingredient> findById(int id) {
-        return repo.findById(id);
-    }
+    public Optional<Ingredient> findById(int id) { return repo.findById(id); }
 
     @Override
     public Optional<Ingredient> findByName(String name) {
@@ -38,17 +36,8 @@ public class IngredientServiceImpl implements IngredientService{
     };
 
     @Override
-    public Set<Recipe> findByRecipe(Recipe recipe) {
-        return null;
-    }
+    public void updateIngredient(Ingredient ingredient) { repo.save(ingredient); }
 
     @Override
-    public void updateIngredient(Ingredient ingredient) {
-
-    }
-
-    @Override
-    public void deleteIngredient(Ingredient ingredient) {
-
-    }
+    public void deleteIngredient(Ingredient ingredient) { repo.delete(ingredient); }
 }

@@ -114,7 +114,7 @@ public class RecipeController {
     }
 
     // edit recipe instructions
-    @PostMapping("/editinstructions")
+    @PostMapping(value = "/editInstructions", params = "update")
     public RedirectView editDirections(@ModelAttribute InstructionDto data, RedirectAttributes att) {
         Recipe recipe = recipeService.findById(data.getRecipe_id());
         InstructionStep step;
@@ -127,6 +127,19 @@ public class RecipeController {
             recipe.addInstruction(step);
             recipeService.saveRecipe(recipe);
         }
+        att.addFlashAttribute("recipe", recipe);
+
+        return new RedirectView("/edit/" + recipe.getId());
+    }
+
+    @PostMapping(value = "/editInstructions", params = "delete")
+    public RedirectView deleteInstruction(@ModelAttribute InstructionDto data, RedirectAttributes att) {
+        Recipe recipe = recipeService.findById(data.getRecipe_id());
+        InstructionStep step = instService.findById(data.getId()).get();
+        recipe.removeInstruction(step);
+        instService.deleteInstructionStep(step);
+        recipeService.updateRecipe(recipe);
+
         att.addFlashAttribute("recipe", recipe);
 
         return new RedirectView("/edit/" + recipe.getId());

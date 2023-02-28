@@ -91,8 +91,7 @@ textarea {
 .list-item {
     display: flex;
     margin: auto;
-    max-width: 200px;
-
+    justify-content: space-between;
 }
 .btn-trans {
     background-color: transparent;
@@ -101,7 +100,22 @@ textarea {
     margin-left: 2rem;
     text-decoration: underline;
 }
-
+ul .list-item {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+}
+/* Set all odd list items to a different color (zebra-stripes) */
+.list li:nth-child(odd) {
+  background: #f9f9f9;
+}
+/* Darker background-color on hover */
+ul .list-item:hover {
+  background: #ddd;
+}
 /* footer styles */
 .footer {
     background: black;
@@ -126,5 +140,11 @@ textarea {
     }
     .rec-img-lg img{
         max-width: 350px;
+    }
+    .list-item {
+        max-width: 350px;
+    }
+    ul .list-item {
+      padding: 12px 5px;
     }
 }

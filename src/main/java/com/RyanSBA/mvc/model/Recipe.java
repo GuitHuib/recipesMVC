@@ -58,6 +58,8 @@ public class Recipe {
     public void addInstruction(InstructionStep step) {
         instructions.add(step);
     }
+
+    public void removeInstruction(InstructionStep step) { instructions.remove(step);}
     public Set<Ingredient> getIngredients() {
         Set<Ingredient> ingredients = new HashSet<>();
         for (RecipeIngredients ingredient : recipeIngredients) {

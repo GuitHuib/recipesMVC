@@ -2,14 +2,14 @@
 <html xmlns:th="http://www/thymeleaf.org" lang="en">
 <body>
 
-<form th:fragment="instructionsForm" th:action="@{/editinstructions}" method="post">
+<form th:fragment="instructionsForm" th:action="@{/editInstructions}" method="post">
 
     <input type="hidden" th:value="${recipe.id}" name="recipe_id">
 
-    <label path="text">Instructions</label>
+    <label path="text" th:text="'Step ' + ${recipe.instructions.size()+1} + ')'" class="bold"></label>
     <textarea name="text" th:text="${instruction}"></textarea>
 
-    <input type="submit" value="Submit">
+    <input type="submit" name="update" value="Add Instruction">
 </form>
 
 </body>

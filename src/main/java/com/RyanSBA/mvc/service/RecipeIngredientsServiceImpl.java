@@ -26,21 +26,11 @@ public class RecipeIngredientsServiceImpl implements RecipeIngredientsService{
     }
 
     @Override
-    public Recipe findById(RecipeIngredientKey key) {
-        return null;
-    }
+    public RecipeIngredients findById(RecipeIngredientKey key) { return null; }
 
     @Override
-    public Set<RecipeIngredients> findByRecipe(Recipe recipe) {
-        return null;
-    }
+    public void updateRecipeIngredients(RecipeIngredients recipeIngredients) { repo.save(recipeIngredients); }
 
     @Override
-    public void updateRecipeIngredients(RecipeIngredients recipeIngredients) {
-
-    }
-
-    @Override
-    public void deleteRecipeIngredients(RecipeIngredients recipeIngredients) {
-    }
+    public void deleteRecipeIngredients(RecipeIngredients recipeIngredients) { repo.delete(recipeIngredients); }
 }

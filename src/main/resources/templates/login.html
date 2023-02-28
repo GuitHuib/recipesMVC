@@ -9,7 +9,7 @@
 
     <h3 class="page-header">Login</h3>
 
-    <form th:action="@{/login}" method="post">
+    <form th:action="@{/login}" method="post" class="centered">
         <label path="username">Email: </label>
         <input type="email" name="username" />
 
@@ -20,7 +20,7 @@
 
     </form>
 
-    <a th:href="@{/sign-up}">Create New Account</a>
+    <a th:href="@{/sign-up}" class="centered">Create New Account</a>
 
 </div>
 

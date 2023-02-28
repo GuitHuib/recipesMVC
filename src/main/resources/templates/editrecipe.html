@@ -19,17 +19,26 @@
 
         <h3>Edit Instructions</h3>
 
-        <div th:each="instruction : ${recipe.instructions}">
-            <form th:fragment="instructionsForm" th:action="@{/editinstructions}" method="post">
+        <div th:each="instruction, iStat : ${recipe.instructions}">
+            <form th:action="@{/editInstructions}" method="post">
 
                 <input type="hidden" th:value="${recipe.id}" name="recipe_id">
                 <input type="hidden" th:value="${instruction.id}" name="id">
 
-                <label path="text">Instructions</label>
+                <label path="text" th:text="'Step ' + ${iStat.index+1} + ')'" class="bold"></label>
                 <textarea name="text" th:text="${instruction.text}"></textarea>
 
-                <input type="submit" value="Submit">
+                <input type="submit" name="update" value="Update">
+                <input type="submit" name="delete" value="Delete">
             </form>
+
+<!--            <form th:action="@{/deleteInstructions}" method="post">-->
+
+<!--                <input type="hidden" th:value="${recipe.id}" name="recipe_id">-->
+<!--                <input type="hidden" th:value="${instruction.id}" name="id">-->
+
+<!--                <input type="submit" value="Delete">-->
+<!--            </form>-->
         </div>
 
         <form th:replace="partial/forms/instructionsForm"></form>

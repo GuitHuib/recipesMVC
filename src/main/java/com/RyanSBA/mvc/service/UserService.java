@@ -13,7 +13,7 @@ import java.util.Set;
 public interface UserService extends UserDetailsService {
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
     List<User> findAllUsers();
-    void createUser(UserDto userDto);
+    void createUser(User user);
     User findByEmail(String email);
     void deleteUser(User user);
 }

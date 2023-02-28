@@ -13,9 +13,7 @@ public interface IngredientService {
     List<Ingredient> findAllIngredients();
     void saveIngredient(Ingredient ingredient);
     Optional<Ingredient> findById(int id);
-
     Optional<Ingredient> findByName(String name);
-    Set<Recipe> findByRecipe(Recipe recipe);
     void updateIngredient(Ingredient ingredient);
     void deleteIngredient(Ingredient ingredient);
 }

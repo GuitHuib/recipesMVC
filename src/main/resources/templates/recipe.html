@@ -71,10 +71,10 @@
                     <span th:text="${instruction.text}"></span>
                 </div>
             </div>
-        </div>
 
-        <div sec:authorize="isAuthenticated()">
-            <a th:if="${#authentication.principal.username} == ${recipe.user.email}" th:href="@{'/edit/' + ${recipe.id}}"><button>Edit Recipe</button></a>
+            <div sec:authorize="isAuthenticated()">
+                <a th:if="${#authentication.principal.username} == ${recipe.user.email}" th:href="@{'/edit/' + ${recipe.id}}"><button>Edit Recipe</button></a>
+            </div>
         </div>
 
     </div>

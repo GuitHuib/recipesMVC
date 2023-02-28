@@ -44,7 +44,7 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
-    public void updateRecipe(Recipe recipe) {}
+    public void updateRecipe(Recipe recipe) { repo.save(recipe); }
 
     @Override
     public void deleteRecipe(Recipe recipe) {

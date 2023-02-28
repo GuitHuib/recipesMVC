@@ -37,14 +37,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> findAllUsers() {
-        return null;
+        return repo.findAll();
     }
 
     @Override
-    public void createUser(UserDto userDto) {
-        User user = new User();
-        user.setEmail(userDto.getEmail());
-        user.setPassword(encoder.encode(userDto.getPassword()));
+    public void createUser(User user) {
+        user.setPassword(encoder.encode(user.getPassword()));
         repo.save(user);
 
     }

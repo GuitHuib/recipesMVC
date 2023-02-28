@@ -7,15 +7,13 @@
 
 <div class="content">
     <h3 class="page-header">Shopping List</h3>
-    <ul>
-        <li th:each="ingredient : ${user.ingredients}" >
-            <div class="list-item">
-                <p class="item" th:text="${ingredient.name}"></p>
-                <form th:action="@{/deleteItem}" method="post">
-                    <input type="hidden" th:value="${ingredient.id}" name="id">
-                    <input type="submit" value="Remove" class="btn-trans">
-                </form>
-            </div>
+    <ul class="list">
+        <li th:each="ingredient : ${user.ingredients}" class="list-item">
+            <div class="item" th:text="${ingredient.name}"></div>
+            <form th:action="@{/deleteItem}" method="post">
+                <input type="hidden" th:value="${ingredient.id}" name="id">
+                <input type="submit" value="Remove" class="btn-trans">
+            </form>
         </li>
     </ul>
 
