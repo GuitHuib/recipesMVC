@@ -38,6 +38,7 @@ public class SecurityConfig{
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/", true)
                 .and()
                 .httpBasic()
                 .and()

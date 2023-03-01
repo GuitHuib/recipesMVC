@@ -9,22 +9,19 @@
 
     <h3>Create Account</h3>
 
-    <form th:action="@{/sign-up}" method="post">
+    <form th:action="@{/sign-up}" method="post" th:object="${user}">
+        <p th:if="${error}" th:text="${error}"></p>
         <label path="email">Email: </label>
-        <input type="email" name="email" />
+        <input type="email" th:field="*{email}" required />
 
         <label path="password">Password: </label>
-        <input type="text" name="password" />
+        <input type="text" th:field="*{password}" required/>
 
-<!--        <label path="passwordConfirmation">Confirm Password: </label>-->
-<!--        <input type="email" name="passwordConfirmation" />-->
+        <label path="passwordConfirmation">Confirm Password: </label>
+        <input type="text" th:field="*{passwordConfirmation}" required/>
 
         <input type="submit" value="Create Account" />
-
-
     </form>
-
-
 </div>
 
 </body>

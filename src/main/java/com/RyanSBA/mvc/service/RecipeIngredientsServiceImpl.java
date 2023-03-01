@@ -13,8 +13,11 @@ import java.util.Set;
 @Service
 public class RecipeIngredientsServiceImpl implements RecipeIngredientsService{
 
+    private final RecipeIngredientsRepository repo;
     @Autowired
-    private RecipeIngredientsRepository repo;
+    public RecipeIngredientsServiceImpl(RecipeIngredientsRepository repo) {
+        this.repo = repo;
+    }
     @Override
     public List<RecipeIngredients> findAllRecipesIngredients() {
         return repo.findAll();

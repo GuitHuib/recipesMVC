@@ -61,7 +61,7 @@ public class RecipeController {
     }
 
     // create new recipe form
-    @GetMapping("/createrecipe")
+    @GetMapping("/createRecipe")
     public String createRecipe(Model model, Principal principle){
         String email = principle.getName();
         model.addAttribute("email", email);
@@ -69,7 +69,7 @@ public class RecipeController {
     }
 
     // save new recipe, redirect to edit page for further details
-    @PostMapping("/createrecipe")
+    @PostMapping("/createRecipe")
     public RedirectView createRecipe(@ModelAttribute RecipeDto dto, RedirectAttributes model){
         Recipe recipe = new Recipe();
         User user = userService.findByEmail(dto.getEmail());
@@ -95,7 +95,7 @@ public class RecipeController {
     }
 
     // edit recipe details, non ingredients/instructions
-    @PostMapping("/editdetails")
+    @PostMapping("/editDetails")
     public RedirectView editDetails(@ModelAttribute RecipeDto dto, RedirectAttributes att) {
         Recipe recipe = recipeService.findById(dto.getId());
         recipe.setName(dto.getName());

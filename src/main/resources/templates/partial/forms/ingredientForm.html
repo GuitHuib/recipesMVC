@@ -2,7 +2,7 @@
 <html xmlns:th="http://www/thymeleaf.org" lang="en">
 <body>
 
-<form th:fragment="ingredientForm" th:action="@{/addingredients}" method="post">
+<form th:fragment="ingredientForm" th:action="@{/addIngredients}" method="post">
 
     <input type="hidden" th:value="${recipe.id}" name="recipe_id">
     <div class="row">

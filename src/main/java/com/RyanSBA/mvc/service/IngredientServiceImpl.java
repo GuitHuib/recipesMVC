@@ -14,8 +14,11 @@ import java.util.Set;
 @Service
 public class IngredientServiceImpl implements IngredientService{
 
+    final IngredientRepository repo;
     @Autowired
-    IngredientRepository repo;
+    public IngredientServiceImpl(IngredientRepository repo){
+        this.repo = repo;
+    }
 
     @Override
     public List<Ingredient> findAllIngredients() {

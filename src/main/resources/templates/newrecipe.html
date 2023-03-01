@@ -7,7 +7,7 @@
 
 <div class="content">
     <h3 class="page-header">New Recipe Form</h3>
-    <form th:action="@{/createrecipe}" th:object="${recipedto}" method="post" class="centered">
+    <form th:action="@{/createRecipe}" th:object="${recipedto}" method="post" class="centered">
 
         <input type="hidden" th:value="${email}" name="email">
 
@@ -48,12 +48,12 @@
                 <ul>
                     <li>
                         <input type="radio" name="glutenFree" id="glutenFree" value="True"/>
-                        <label for="glutenFree">GutenFree</label>
+                        <label for="glutenFree">GlutenFree</label>
                     </li>
 
                     <li>
                         <input type="radio" name="glutenFree" id="nonGlutenFree" value="False" checked="true"/>
-                        <label for="nonGlutenFree">Non GutenFree</label>
+                        <label for="nonGlutenFree">Non GlutenFree</label>
                     </li>
                 </ul>
             </div>

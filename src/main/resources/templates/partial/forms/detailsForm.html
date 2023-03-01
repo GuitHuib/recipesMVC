@@ -2,7 +2,7 @@
 <html xmlns:th="http://www/thymeleaf.org" lang="en">
 <body>
 
-<form th:fragment="detailsForm" th:action="@{/editdetails}" th:object="${recipe}" method="post">
+<form th:fragment="detailsForm" th:action="@{/editDetails}" th:object="${recipe}" method="post">
 
     <input type="hidden" th:value="${recipe.id}" name="id">
 
@@ -43,12 +43,12 @@
             <ul>
                 <li>
                     <input type="radio" name="glutenFree" id="glutenFree" value="True" th:field="*{glutenFree}"/>
-                    <label for="glutenFree">GutenFree</label>
+                    <label for="glutenFree">GlutenFree</label>
                 </li>
 
                 <li>
                     <input type="radio" name="glutenFree" id="nonGlutenFree" value="False" th:field="*{glutenFree}" />
-                    <label for="nonGlutenFree">Non GutenFree</label>
+                    <label for="nonGlutenFree">Non GlutenFree</label>
                 </li>
             </ul>
         </div>

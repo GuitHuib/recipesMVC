@@ -18,8 +18,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     String email;
+    @Column(nullable = false)
     String password;
     @OneToMany(targetEntity = Recipe.class)
     Set<Recipe> recipes;

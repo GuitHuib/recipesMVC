@@ -15,10 +15,14 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService{
 
 
+    final RecipeRepository repo;
+    final RecipeIngredientsRepository connRepo;
+
     @Autowired
-    RecipeRepository repo;
-    @Autowired
-    RecipeIngredientsRepository connRepo;
+    public RecipeServiceImpl(RecipeRepository repo, RecipeIngredientsRepository connRepo) {
+        this.repo = repo;
+        this.connRepo = connRepo;
+    }
     @Override
     public void saveRecipe(Recipe recipe) {
         repo.save(recipe);

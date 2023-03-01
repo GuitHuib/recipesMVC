@@ -13,16 +13,17 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -39,23 +40,39 @@ public class UserController {
     IngredientServiceImpl ingredientService;
 
     @GetMapping("/sign-up")
-    public String newUser() {
+    public String newUser(Model model) {
+        model.addAttribute("user", new UserDto());
         return "signup";
     }
 
     @PostMapping("/sign-up")
-    public RedirectView newUser(@ModelAttribute UserDto dto, HttpServletRequest req) {
+    public String newUser(@ModelAttribute UserDto dto, HttpServletRequest req, Model model) {
+        // check that password and confirmation match
+        if (!dto.getPassword().equals(dto.getPasswordConfirmation())){
+            model.addAttribute("user", new UserDto());
+            model.addAttribute("error", "Passwords do not match");
+            return "signup";
+        }
+        //create new user
         User user = new User();
         user.setPassword(dto.getPassword());
         user.setEmail(dto.getEmail());
-        userService.createUser(user);
+        // attempt to save new user
+        try {
+            userService.createUser(user);
+        } catch (DataIntegrityViolationException e) {
+            model.addAttribute("user", new UserDto());
+            model.addAttribute("error", "Account for that email already exists");
+            return "signup";
+        }
         //automatically login after sign up
         try {
             req.login(dto.getEmail(), dto.getPassword());
         } catch(ServletException e) {
             log.error("Login Error ", e);
+            return "login";
         }
-        return new RedirectView("/");
+        return "recipeIndex";
     }
 
     @GetMapping("/login")
@@ -63,14 +80,14 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/myrecipes")
+    @GetMapping("/myRecipes")
     public String showUser(Model model, Principal principle) {
         User user = userService.findByEmail(principle.getName());
         model.addAttribute("user", user);
         return "myrecipes";
     }
 
-    @GetMapping("/shoppinglist")
+    @GetMapping("/shoppingList")
     public String showList(Model model, Principal principle) {
         User user = userService.findByEmail(principle.getName());
         model.addAttribute("user", user);
@@ -95,7 +112,7 @@ public class UserController {
         Ingredient ingredient = ingredientService.findById(data.getId()).get();
         user.removeItem(ingredient);
         userService.updateUser(user);
-        return new RedirectView("/shoppinglist");
+        return new RedirectView("/shoppingList");
     }
 
     @PostMapping("/addItem")
@@ -111,6 +128,6 @@ public class UserController {
             user.addToShoppingList(ingredients);
             userService.updateUser(user);
 
-            return new RedirectView("/shoppinglist");
+            return new RedirectView("/shoppingList");
     }
 }

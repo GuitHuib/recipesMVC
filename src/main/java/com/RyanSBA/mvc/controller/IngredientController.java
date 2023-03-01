@@ -23,7 +23,7 @@ public class IngredientController {
     @Autowired
     RecipeServiceImpl recipeService;
 
-    @PostMapping("addingredients")
+    @PostMapping("addIngredients")
     public RedirectView addIngredients(@ModelAttribute IngredientDto dto, RedirectAttributes model) {
 
         // check if ingredient already exists, else save new

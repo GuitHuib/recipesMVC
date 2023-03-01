@@ -15,8 +15,11 @@ import java.util.Set;
 
 public class InstructionStepServiceImpl implements InstructionStepService {
 
+    final InstructionStepRepository repo;
     @Autowired
-    InstructionStepRepository repo;
+    public InstructionStepServiceImpl(InstructionStepRepository repo) {
+        this.repo = repo;
+    }
 
     @Override
     public List<InstructionStep> findAllInstructionSteps() {
