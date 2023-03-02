@@ -2,8 +2,11 @@ package com.RyanSBA.mvc.service;
 
 import com.RyanSBA.mvc.model.User;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -34,8 +37,19 @@ public class UserServiceTest {
         Assertions.assertEquals(start+1, ending);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"testUser@test.com", "newUser@test.com"})
     @Order(2)
+    public void duplicateEmailShouldFail (String email) {
+        User dup = new User();
+        dup.setEmail(email);
+        dup.setPassword("pass");
+        Assertions.assertThrows(DataIntegrityViolationException.class, ()-> {
+            userService.createUser(dup);
+        });
+    }
+    @Test
+    @Order(3)
     public void findByEmailTest() {
         User actual = userService.findByEmail(testUser.getEmail());
         User expected = new User();
@@ -43,7 +57,7 @@ public class UserServiceTest {
         Assertions.assertEquals(expected.getEmail(), actual.getEmail());
     }
     @Test
-    @Order(3)
+    @Order(4)
     public void updateUserTest() {
         testUser.setEmail("otherEmail@test.com");
         userService.updateUser(testUser);
@@ -51,18 +65,20 @@ public class UserServiceTest {
         Assertions.assertEquals("otherEmail@test.com", actual.getEmail());
     }
     @Test
-    @Order(4)
+    @Order(5)
     public void findByIdTest() {
         User actual = userService.findById(testUser.getId()).get();
         Assertions.assertEquals(actual.getEmail(), testUser.getEmail());
     }
     @Test
-    @Order(5)
+    @Order(6)
     public void deleteUserTest() {
         User user = userService.findByEmail(testUser.getEmail());
         userService.deleteUser(user);
 
         User other = userService.findByEmail("newUser@test.com");
         userService.deleteUser(other);
+
     }
+
 }
