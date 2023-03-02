@@ -72,7 +72,7 @@ public class UserController {
             log.error("Login Error ", e);
             return "login";
         }
-        return "recipeIndex";
+        return "index";
     }
 
     @GetMapping("/login")

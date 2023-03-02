@@ -25,6 +25,9 @@ public class Recipe {
 
     String description;
 
+    @Column(nullable = true, length = 64)
+    String image;
+
     @OneToMany(targetEntity = RecipeIngredients.class, mappedBy = "recipe")
     Set<RecipeIngredients> recipeIngredients;
 

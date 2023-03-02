@@ -46,9 +46,9 @@ li {
     width: auto;
 }
 .rec-img-lg img{
+    height: auto;
     max-height: 300px;
-    max-width: 500px;
-    width: auto;
+    width: 500px;
 }
 .brn-col {
     color: brown;
@@ -87,6 +87,10 @@ textarea {
 /* list style*/
 .checked {
     text-decoration: line-through;
+}
+.list {
+    margin: auto;
+    max-width: 550px;
 }
 .list-item {
     display: flex;
@@ -135,11 +139,15 @@ ul .list-item:hover {
 
 /* media queries */
 @media (max-width: 576px) {
+    .content {
+        margin:1rem;
+    }
     .rec-img {
         margin: 3rem auto;
     }
     .rec-img-lg img{
-        max-width: 350px;
+        width: 300px;
+        max-height: 200px;
     }
     .list-item {
         max-width: 350px;

@@ -47,11 +47,16 @@
             </form>
 
             <div class="row">
-                <div class="rec-img-lg">
-                    <img src="/images/meal.jpg">
+                <div th:if="${recipe.image}" class="rec-img-lg">
+                    <img th:src="@{'/images/upload/' + ${recipe.id} + '/' + ${recipe.image}}">
                 </div>
             </div>
 
+            <div class="row">
+                <div th:if="${recipe.image}==null" class="rec-img-lg">
+                    <img src="/images/meal.jpg">
+                </div>
+            </div>
 
             <div class="rec-title">Ingredients</div>
             <div class="row">

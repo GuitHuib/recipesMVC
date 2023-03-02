@@ -31,10 +31,14 @@
                 <input type="submit" name="update" value="Update">
                 <input type="submit" name="delete" value="Delete">
             </form>
-
         </div>
 
         <form th:replace="partial/forms/instructionsForm"></form>
+
+        <form th:action="@{/deleteRecipe}" method="post">
+            <input type="hidden" th:value="${recipe.id}" name="id">
+            <input type="submit" name="delete" value="Delete Recipe">
+        </form>
 
     </div>
 </body>

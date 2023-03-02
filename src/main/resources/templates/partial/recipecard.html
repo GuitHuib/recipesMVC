@@ -26,7 +26,12 @@
             <div class="col-6">Cook Time: <span th:text="${recipe.prepTime}" ></span></div>
         </div>
     </div>
-    <div class="col-md-5 col-12 rec-img">
+
+    <div th:if="${recipe.image}" class="col-md-5 col-12 rec-img">
+        <img th:src="@{'/images/upload/' + ${recipe.id} + '/' + ${recipe.image}}">
+    </div>
+
+    <div th:if="${recipe.image}==null" class="col-md-5 col-12 rec-img">
         <img src="/images/meal.jpg">
     </div>
 </div>

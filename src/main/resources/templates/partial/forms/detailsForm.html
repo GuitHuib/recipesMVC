@@ -2,7 +2,10 @@
 <html xmlns:th="http://www/thymeleaf.org" lang="en">
 <body>
 
-<form th:fragment="detailsForm" th:action="@{/editDetails}" th:object="${recipe}" method="post">
+<form th:fragment="detailsForm"
+      th:action="@{/editDetails}"
+      th:object="${recipe}"
+      method="post">
 
     <input type="hidden" th:value="${recipe.id}" name="id">
 
@@ -13,8 +16,8 @@
     <textarea name="description" th:text="${recipe.description}"></textarea>
 
     <div class="row">
-        <div class="col-lg-4">
-            <ul class="form-list">
+        <div class="col-lg-4 form-list">
+            <ul>
                 <lil>
                     <input type="radio" name="vegetarian" id="vegetarian" value="True" th:field="*{vegetarian}"/>
                     <label for="vegetarian">Vegetarian Friendly</label>
@@ -68,7 +71,12 @@
     <label path="serves">Number Served</label>
     <input type="text" name="serves" th:value="${recipe.serves}"/>
 
-    <input type="submit" value="Update">
+    <div class="row">
+        <label th:text="${(recipe.image!=null) ? 'Replace Image' : 'Upload Image'}"></label>
+        <input type="file" name="image" accept="image/png, image/jpeg, image/jpg">
+    </div>
+
+    <input type="submit" value="Update Recipe" class="my-3">
 </form>
 
 </body>
