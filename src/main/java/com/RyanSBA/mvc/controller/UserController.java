@@ -60,9 +60,11 @@ public class UserController {
         // attempt to save new user
         try {
             userService.createUser(user);
+            log.info("USER "+user.getId()+" CREATED");
         } catch (DataIntegrityViolationException e) {
             model.addAttribute("user", new UserDto());
             model.addAttribute("error", "Account for that email already exists");
+            log.info("ERROR, "+user.getEmail()+" ALREADY EXISTS; "+e.getMessage());
             return "signup";
         }
         //automatically login after sign up

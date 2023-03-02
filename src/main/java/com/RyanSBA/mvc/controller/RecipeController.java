@@ -8,6 +8,7 @@ import com.RyanSBA.mvc.model.User;
 import com.RyanSBA.mvc.service.InstructionStepServiceImpl;
 import com.RyanSBA.mvc.service.RecipeServiceImpl;
 import com.RyanSBA.mvc.service.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Controller
 public class RecipeController {
 
@@ -96,6 +98,7 @@ public class RecipeController {
         recipe.setCookTime(dto.getCookTime());
         recipe.setServes(dto.getServes());
         recipeService.saveRecipe(recipe);
+        log.info("RECIPE "+recipe.getId()+" CREATED");
 
         user.addRecipe(recipe);
         userService.updateUser(user);
@@ -132,6 +135,7 @@ public class RecipeController {
         recipe.setCookTime(dto.getCookTime());
         recipe.setServes(dto.getServes());
         recipeService.saveRecipe(recipe);
+        log.info("RECIPE "+recipe.getId()+" UPDATED");
 
         att.addFlashAttribute("recipe", recipe);
 
@@ -152,6 +156,7 @@ public class RecipeController {
             recipe.addInstruction(step);
             recipeService.saveRecipe(recipe);
         }
+        log.info("RECIPE "+recipe.getId()+" UPDATED");
         att.addFlashAttribute("recipe", recipe);
 
         return new RedirectView("/edit/" + recipe.getId());
@@ -165,6 +170,7 @@ public class RecipeController {
         recipe.removeInstruction(step);
         instService.deleteInstructionStep(step);
         recipeService.updateRecipe(recipe);
+        log.info("RECIPE "+recipe.getId()+" UPDATED");
 
         att.addFlashAttribute("recipe", recipe);
 
@@ -178,6 +184,7 @@ public class RecipeController {
         User user = userService.findByEmail(principal.getName());
         user.removeRecipe(recipe);
         recipeService.deleteRecipe(recipe);
+        log.info("RECIPE "+recipe.getId()+" DELETED");
         return new RedirectView("/");
     }
 
