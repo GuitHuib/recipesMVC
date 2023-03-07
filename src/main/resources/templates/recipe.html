@@ -48,7 +48,7 @@
 
             <div class="row">
                 <div th:if="${recipe.image}" class="rec-img-lg">
-                    <img th:src="@{'/images/upload/' + ${recipe.id} + '/' + ${recipe.image}}">
+                    <img th:src="@{'http://localhost:8080/upload/' + ${recipe.id} + '/' + ${recipe.image}}">
                 </div>
             </div>
 

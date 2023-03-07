@@ -36,10 +36,8 @@ public class RecipeController {
     RecipeServiceImpl recipeService;
     @Autowired
     UserServiceImpl userService;
-
     @Autowired
     InstructionStepServiceImpl instService;
-
     // view index of all recipes
     @GetMapping("/")
     public String showRecipes(Model model){
@@ -79,11 +77,12 @@ public class RecipeController {
     @PostMapping("/createRecipe")
     public RedirectView createRecipe(@ModelAttribute RecipeDto dto,
                                      RedirectAttributes model,
-                                     @RequestParam("image")MultipartFile multipartFile)
+                                     @RequestParam("image")MultipartFile multipartFile,
+                                     Principal principal)
         throws IOException
     {
         Recipe recipe = new Recipe();
-        User user = userService.findByEmail(dto.getEmail());
+        User user = userService.findByEmail(principal.getName());
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
         // convert dto to ingredient model
@@ -104,8 +103,8 @@ public class RecipeController {
         userService.updateUser(user);
 
         // save image in directory
-        // * move to helper class *
-        String uploadDir = "src/main/resources/static/images/upload/" + recipe.getId();
+        // todo: move to helper class
+        String uploadDir = "src/main/upload/" + recipe.getId();
         Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
@@ -113,7 +112,6 @@ public class RecipeController {
         try (InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("ImageSaved");
         } catch (IOException e) {
             throw new IOException("Could not save image");
         }

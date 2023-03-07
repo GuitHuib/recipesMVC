@@ -27,11 +27,15 @@
         </div>
     </div>
 
-    <div th:if="${recipe.image}" class="col-md-5 col-12 rec-img">
-        <img th:src="@{'/images/upload/' + ${recipe.id} + '/' + ${recipe.image}}">
+<!--    <div th:if="${recipe.image}!=''" class="col-md-5 col-12 rec-img">-->
+<!--        <img th:src="@{'/images/upload/' + ${recipe.id} + '/' + ${recipe.image}}">-->
+<!--    </div>-->
+
+    <div th:if="${recipe.image}!=''" class="col-md-5 col-12 rec-img">
+        <img th:src="@{'http://localhost:8080/upload/' + ${recipe.id} + '/' + ${recipe.image}}">
     </div>
 
-    <div th:if="${recipe.image}==null" class="col-md-5 col-12 rec-img">
+    <div th:if="${recipe.image}==''" class="col-md-5 col-12 rec-img">
         <img src="/images/meal.jpg">
     </div>
 </div>

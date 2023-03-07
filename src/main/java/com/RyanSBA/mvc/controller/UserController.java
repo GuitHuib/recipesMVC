@@ -65,7 +65,7 @@ public class UserController {
             model.addAttribute("user", new UserDto());
             model.addAttribute("error", "Account for that email already exists");
             log.info("ERROR, "+user.getEmail()+" ALREADY EXISTS; "+e.getMessage());
-//            return "signup";
+            return "signup";
         }
         //automatically login after sign up
         try {
